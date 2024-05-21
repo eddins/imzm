@@ -24,26 +24,26 @@ function [old_scale,old_center] = imageDisplayScale(new_scale,new_center,options
 
     xlim = ax.XLim([1 end]);
     ylim = ax.YLim([1 end]);
-    oc = [mean(xlim) mean(ylim)];
+    orig_center = [mean(xlim) mean(ylim)];
 
-    os = 100 * imageUnclippedSizeInScreenPixels(im) ./ ...
+    orig_scale = 100 * imageUnclippedSizeInScreenPixels(im) ./ ...
         size(im.CData,[2 1]);
 
     if ~isnan(new_scale) || any(~isnan(new_center))
         if ~isnan(new_center(1))
             cx = new_center(1);
         else
-            cx = oc(1);
+            cx = orig_center(1);
         end
 
         if ~isnan(new_center(2))
             cy = new_center(2);
         else
-            cy = oc(2);
+            cy = orig_center(2);
         end
 
-        sx = new_scale / os(1);
-        sy = new_scale / os(2);
+        sx = new_scale / orig_scale(1);
+        sy = new_scale / orig_scale(2);
 
         new_xlim = (xlim - cx)/sx + cx;
         ax.XLim = new_xlim;
@@ -53,7 +53,7 @@ function [old_scale,old_center] = imageDisplayScale(new_scale,new_center,options
     end
 
     if (nargout > 0) || (nargin == 0)
-        old_scale = os;
-        old_center = oc;
+        old_scale = orig_scale;
+        old_center = orig_center;
     end
 end
