@@ -52,7 +52,7 @@ function [old_scale,old_center] = imageDisplayScale(new_scale,new_center,options
         ax.YLim = new_ylim;
     end
 
-    if nargout > 0
+    if (nargout > 0) || (nargin == 0)
         old_scale = os;
         old_center = oc;
     end
