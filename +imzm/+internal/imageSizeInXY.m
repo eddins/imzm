@@ -1,6 +1,6 @@
 function out = imageSizeInXY(im)
     arguments
-        im (1,1) matlab.graphics.primitive.Image = findimage
+        im (1,1) matlab.graphics.primitive.Image
     end
 
     pixel_width = extent(im.XData,size(im.CData,2));
