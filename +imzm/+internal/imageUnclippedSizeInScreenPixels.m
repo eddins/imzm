@@ -4,6 +4,6 @@ function out = imageUnclippedSizeInScreenPixels(im)
     end
 
     ax = ancestor(im,"axes");
-    out = (imageSizeInXY(im) ./ axesBoxSizeInXY(ax)) .* ...
+    out = (imzm.internal.imageSizeInXY(im) ./ axesBoxSizeInXY(ax)) .* ...
         axesBoxSizeInScreenPixels(ax);
 end
