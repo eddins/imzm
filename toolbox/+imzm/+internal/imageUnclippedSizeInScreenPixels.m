@@ -6,5 +6,5 @@ function out = imageUnclippedSizeInScreenPixels(im)
     ax = ancestor(im,"axes");
     out = (imzm.internal.imageSizeInXY(im) ./ ...
         imzm.internal.axesBoxSizeInXY(ax)) .* ...
-        imzm.internal.axesBoxSizeInScreenPixels(ax);
+        imzm.internal.axesPixelBoxSize(ax);
 end
