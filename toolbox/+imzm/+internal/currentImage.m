@@ -6,6 +6,9 @@
 %   - There is no current figure, or
 %   - The current figure does not have a current axes, or
 %   - The current axes of the current figure does not contain an image
+%
+%   Unlike the gcf ("get current figure") and gca ("get current axes")
+%   functions, currentImage does not create any objects.
 
 function im = currentImage
     im = matlab.graphics.primitive.Image.empty(1,0);
