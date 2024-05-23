@@ -1,6 +1,6 @@
 function out = axesBoxSizeInScreenPixels(ax)
     arguments
-        ax (1,1) matlab.graphics.axis.Axes = gca;
+        ax (1,1) matlab.graphics.axis.Axes
     end
 
     old_units = ax.Units;
