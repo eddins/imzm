@@ -1,4 +1,4 @@
-function out = imagePixelSize(im)
+function out = getImagePixelSize(im)
     arguments
         im (1,1) matlab.graphics.primitive.Image
     end
