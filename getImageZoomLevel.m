@@ -1,6 +1,6 @@
 function out = getImageZoomLevel(im)
     arguments
-        im (1,1) matlab.graphics.primitive.Image = currentImage
+        im (1,1) matlab.graphics.primitive.Image = imzm.internal.currentImage
     end
 
     out = imageUnclippedSizeInScreenPixels(im) ./ ...
