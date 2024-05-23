@@ -1,6 +1,6 @@
 function out = imageUnclippedSizeInScreenPixels(im)
     arguments
-        im (1,1) matlab.graphics.primitive.Image = findimage
+        im (1,1) matlab.graphics.primitive.Image
     end
 
     ax = ancestor(im,"axes");
