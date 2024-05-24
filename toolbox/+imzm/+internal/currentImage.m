@@ -9,6 +9,11 @@
 %
 %   Unlike the gcf ("get current figure") and gca ("get current axes")
 %   functions, currentImage does not create any objects.
+%
+%   This is an internal function that is not intended as a public
+%   interface.
+
+% Steve Eddins
 
 function im = currentImage
     im = matlab.graphics.primitive.Image.empty(1,0);

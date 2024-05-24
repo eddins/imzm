@@ -7,6 +7,11 @@
 %   ScreenPixelsPerInch. Unlike the ScreenPixelsPerInch property on the
 %   graphics root (groot), a figure's ScreenPixelsPerInch does account for
 %   high-resolution displays.
+%
+%   This is an internal function that is not intended as a public
+%   interface.
+
+% Steve Eddins
 
 function sppi = figureResolution(fig)
     arguments

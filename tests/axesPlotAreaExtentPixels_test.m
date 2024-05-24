@@ -1,4 +1,4 @@
-classdef axesPixelBoxSize_test < matlab.unittest.TestCase
+classdef axesPlotAreaExtentPixels_test < matlab.unittest.TestCase
     properties
         TestFigure
     end
@@ -17,7 +17,7 @@ classdef axesPixelBoxSize_test < matlab.unittest.TestCase
                 Units = "normalized", ...
                 Position = [0 0 1 1]);
             drawnow;
-            actual = imzm.internal.axesPixelBoxSize(ax);
+            actual = imzm.internal.axesPlotAreaExtentPixels(ax);
             expected = [800 200];
             test_case.verifyEqual(actual,expected);
         end
@@ -27,7 +27,7 @@ classdef axesPixelBoxSize_test < matlab.unittest.TestCase
                 Units = "pixels", ...
                 Position = [10 10 50 80]);
             drawnow;
-            actual = imzm.internal.axesPixelBoxSize(ax);
+            actual = imzm.internal.axesPlotAreaExtentPixels(ax);
             expected = [50 80];
             test_case.verifyEqual(actual,expected);
         end        
