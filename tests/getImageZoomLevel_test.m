@@ -1,19 +1,26 @@
 classdef getImageZoomLevel_test < matlab.unittest.TestCase
 
-    methods (TestClassSetup)
-        % Shared setup for the entire test class
+    properties
+        TestFigure
     end
 
     methods (TestMethodSetup)
-        % Setup for each test
-    end
-
-    methods (Test)
-        % Test methods
-
-        function unimplementedTest(testCase)
-            testCase.verifyTrue(true,"Stub test");
+        function createFigure(test_case)
+            test_case.TestFigure = figure(Units = "pixels", ...
+                Position = [100 100 800 200]);
+            addTeardown(test_case,@() close(test_case.TestFigure));
         end
     end
 
+    methods (Test)
+        function basicTest(test_case)
+            ax = axes(Units = "pixels", Position = [100 100 50 50]);
+            im = imagesc(ones(10,25),Parent = ax);
+            drawnow;
+            actual = getImageZoomLevel(im);
+            expected = [200 500];
+            test_case.verifyEqual(actual,expected,...
+                AbsTol = 0.1);
+        end
+    end
 end
