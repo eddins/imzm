@@ -5,5 +5,5 @@ function out = getImagePixelSize(im)
 
     fig = ancestor(im,"figure");
     out = (getImageZoomLevel(im)/100) ./ ...
-        imzm.internal.figureScreenPixelsPerInch(fig);
+        imzm.internal.figureResolution(fig);
 end
