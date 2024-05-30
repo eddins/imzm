@@ -16,10 +16,10 @@ function extent = axesPlotAreaExtentPixels(ax)
     end
 
     original_units = ax.Units;
-    units_resetter = onCleanup(@() setAxesUnits(ax,original_units));
+    unit_restorer = onCleanup(@() setAxesUnits(ax,original_units));
     ax.Units = "pixels";
-    pos = tightPosition(ax);
-    extent = pos(3:4);
+    pixel_position = tightPosition(ax);
+    extent = pixel_position(3:4);
 end
 
 function setAxesUnits(ax,units)
