@@ -12,8 +12,6 @@
 %   This is an internal function that is not intended as a public
 %   interface.
 
-% Steve Eddins
-
 function extent = imageUnclippedExtentXY(im)
     arguments
         im (1,1) matlab.graphics.primitive.Image
@@ -45,3 +43,5 @@ function e = extent1D(data,num_pixels)
         e = (data(2) - data(1)) / (num_pixels - 1);
     end
 end
+
+% Steve Eddins

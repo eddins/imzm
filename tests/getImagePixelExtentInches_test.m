@@ -25,3 +25,5 @@ classdef getImagePixelExtentInches_test < matlab.unittest.TestCase
         end      
     end
 end
+
+% Steve Eddins

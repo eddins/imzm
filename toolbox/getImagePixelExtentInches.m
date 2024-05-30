@@ -11,8 +11,6 @@
 %   LIMITATION: The output is only a rough approximation of the actual size
 %   of the image pixels on the display device.
 
-% Steve Eddins
-
 function out = getImagePixelExtentInches(im)
     arguments
         im (1,1) matlab.graphics.primitive.Image = imzm.internal.currentImage
@@ -22,3 +20,5 @@ function out = getImagePixelExtentInches(im)
     out = (getImageZoomLevel(im)/100) ./ ...
         imzm.internal.figureResolution(fig);
 end
+
+% Steve Eddins

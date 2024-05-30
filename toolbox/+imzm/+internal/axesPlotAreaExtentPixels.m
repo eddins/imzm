@@ -8,8 +8,6 @@
 %   This is an internal function that is not intended as a public
 %   interface.
 
-% Steve Eddins
-
 function extent = axesPlotAreaExtentPixels(ax)
     arguments
         ax (1,1) matlab.graphics.axis.Axes
@@ -25,3 +23,5 @@ end
 function setAxesUnits(ax,units)
     ax.Units = units;
 end
+
+% Steve Eddins

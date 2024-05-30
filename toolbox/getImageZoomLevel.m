@@ -11,8 +11,6 @@
 %
 %   See also setImageZoomLevel
 
-% Steve Eddins
-
 function out = getImageZoomLevel(im)
     arguments
         im (1,1) matlab.graphics.primitive.Image = imzm.internal.currentImage
@@ -23,3 +21,5 @@ function out = getImageZoomLevel(im)
 
     out = out * 100;
 end
+
+% Steve Eddins

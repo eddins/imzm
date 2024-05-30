@@ -7,8 +7,6 @@
 %   This is an internal function that is not intended as a public
 %   interface.
 
-% Steve Eddins
-
 function extent = imageUnclippedExtentPixels(im)
     arguments
         im (1,1) matlab.graphics.primitive.Image
@@ -19,3 +17,5 @@ function extent = imageUnclippedExtentPixels(im)
         imzm.internal.axesPlotAreaExtentXY(ax)) .* ...
         imzm.internal.axesPlotAreaExtentPixels(ax);
 end
+
+% Steve Eddins

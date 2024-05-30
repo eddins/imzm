@@ -8,8 +8,6 @@
 %
 %   See also setAxesCenterXY
 
-% Steve Eddins
-
 function center = getAxesCenterXY(ax)
     arguments
         ax (1,1) matlab.graphics.axis.Axes = gca
@@ -19,3 +17,6 @@ function center = getAxesCenterXY(ax)
     ylim = ax.YLim([1 end]);
     center = [mean(xlim) mean(ylim)];
 end
+
+% Steve Eddins
+

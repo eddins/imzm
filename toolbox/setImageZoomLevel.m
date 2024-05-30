@@ -17,8 +17,6 @@
 %
 %   See also getImageZoomLevel
 
-% Steve Eddins
-
 function setImageZoomLevel(new_level,im)
     arguments
         new_level (1,2) double {mustBeReal, mustBeFinite}
@@ -50,3 +48,5 @@ function tf = almostEqual(a,b)
     tol = eps(class(a))^0.75;
     tf = abs(a - b) <= tol*max(abs(a),abs(b));
 end
+
+% Steve Eddins

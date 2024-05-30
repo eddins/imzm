@@ -13,8 +13,6 @@
 %   This is an internal function that is not intended as a public
 %   interface.
 
-% Steve Eddins
-
 function im = currentImage
     im = matlab.graphics.primitive.Image.empty(1,0);
     r = groot;
@@ -29,3 +27,5 @@ function im = currentImage
         end
     end
 end
+
+% Steve Eddins

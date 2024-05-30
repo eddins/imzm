@@ -8,8 +8,6 @@
 %
 %   See also getAxesCenterXY
 
-% Steve Eddins
-
 function setAxesCenterXY(center,ax)
     arguments
         center (1,2) double
@@ -27,3 +25,5 @@ function setAxesCenterXY(center,ax)
     new_ylim = ylim + shiftxy(1);
     ax.YLim = new_ylim;
 end
+
+% Steve Eddins

@@ -6,8 +6,6 @@
 %   This is an internal function that is not intended as a public
 %   interface.
 
-% Steve Eddins
-
 function extent = axesPlotAreaExtentXY(ax)
     arguments
         ax (1,1) matlab.graphics.axis.Axes = gca
@@ -18,3 +16,5 @@ function extent = axesPlotAreaExtentXY(ax)
 
     extent = [(xlim(2) - xlim(1)) (ylim(2) - ylim(1))];
 end
+
+% Steve Eddins

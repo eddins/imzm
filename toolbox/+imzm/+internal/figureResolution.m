@@ -6,8 +6,6 @@
 %   This is an internal function that is not intended as a public
 %   interface.
 
-% Steve Eddins
-
 function res = figureResolution(fig)
     arguments
         fig (1,1) matlab.ui.Figure
@@ -27,3 +25,5 @@ end
 function setUnits(fig,new_units)
     fig.Units = new_units;
 end
+
+% Steve Eddins
