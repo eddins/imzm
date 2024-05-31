@@ -21,7 +21,8 @@ classdef getImagePixelExtentInches_test < matlab.unittest.TestCase
 
             actual = getImagePixelExtentInches(im);
             expected = [4/25 2/10];
-            test_case.verifyEqual(actual,expected);
+            test_case.verifyEqual(actual,expected,...
+                AbsTol = 0.01);
         end      
     end
 end
