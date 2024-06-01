@@ -8,7 +8,7 @@ function opts = toolboxOptions
 
     opts = matlab.addons.toolbox.ToolboxOptions(toolbox_folder,identifier);
 
-    opts.ToolboxName = "imzm Toolbox";
+    opts.ToolboxName = "Image Zoom and Pan Utilities";
 
     % Version number of the toolbox. Use semantic version numbers of the
     % form MAJOR.MINOR.PATCH, such as "2.0.1". Increment the MAJOR version
@@ -37,7 +37,7 @@ function opts = toolboxOptions
     % .mltbx extension, MATLAB appends the extension automatically when it
     % creates the file.
 
-    opts.OutputFile = fullfile("release","imzm Toolbox");
+    opts.OutputFile = fullfile("release","imzm-toolbox");
     
     % Latest MATLAB release that the toolbox is compatible with, specified
     % as a string using the format RXXXXx, for example, "R2023a". If there
@@ -51,7 +51,7 @@ function opts = toolboxOptions
     % If there is no minimum restriction, specify MinimumMatlabRelease as
     % empty ("").
 
-    opts.MinimumMatlabRelease = "";
+    opts.MinimumMatlabRelease = "R2019b";
 
     % Supported platforms
 
@@ -61,11 +61,14 @@ function opts = toolboxOptions
     platforms.MatlabOnline = true;
     opts.SupportedPlatforms = platforms; 
 
-    % opts.Description = 
+    opts.Description = "This toolbox contains functions for querying " + ...
+        "and setting image zoom level; " + ...
+        "querying and setting the pan location; " + ...
+        "and querying the physical pixel size as currently displayed.";
 
-    % opts.Summary = 
+    opts.Summary = "Image zoom level and pan functions";
 
-    % opts.AuthorName = 
+    opts.AuthorName = "Steve Eddins";
 
     % opts.AuthorEmail =
 
