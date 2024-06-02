@@ -44,4 +44,4 @@ function e = extent1D(data,num_pixels)
     end
 end
 
-% Steve Eddins
+% Copyright (c) 2024 Steven L. Eddins

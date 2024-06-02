@@ -24,4 +24,4 @@ function setAxesUnits(ax,units)
     ax.Units = units;
 end
 
-% Steve Eddins
+% Copyright (c) 2024 Steven L. Eddins

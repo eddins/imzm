@@ -26,4 +26,4 @@ function setAxesCenterXY(center,ax)
     ax.YLim = new_ylim;
 end
 
-% Steve Eddins
+% Copyright (c) 2024 Steven L. Eddins

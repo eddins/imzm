@@ -18,5 +18,4 @@ function center = getAxesCenterXY(ax)
     center = [mean(xlim) mean(ylim)];
 end
 
-% Steve Eddins
-
+% Copyright (c) 2024 Steven L. Eddins

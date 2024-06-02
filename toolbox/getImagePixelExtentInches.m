@@ -21,4 +21,4 @@ function out = getImagePixelExtentInches(im)
         imzm.internal.figureResolution(fig);
 end
 
-% Steve Eddins
+% Copyright (c) 2024 Steven L. Eddins

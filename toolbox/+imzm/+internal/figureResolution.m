@@ -26,4 +26,4 @@ function setUnits(fig,new_units)
     fig.Units = new_units;
 end
 
-% Steve Eddins
+% Copyright (c) 2024 Steven L. Eddins

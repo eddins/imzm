@@ -28,4 +28,4 @@ function im = currentImage
     end
 end
 
-% Steve Eddins
+% Copyright (c) 2024 Steven L. Eddins

@@ -100,4 +100,4 @@ classdef setImageZoomLevel_test < matlab.unittest.TestCase
     end
 end
 
-% Steve Eddins
+% Copyright (c) 2024 Steven L. Eddins

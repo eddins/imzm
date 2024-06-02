@@ -17,4 +17,4 @@ function extent = axesPlotAreaExtentXY(ax)
     extent = [(xlim(2) - xlim(1)) (ylim(2) - ylim(1))];
 end
 
-% Steve Eddins
+% Copyright (c) 2024 Steven L. Eddins

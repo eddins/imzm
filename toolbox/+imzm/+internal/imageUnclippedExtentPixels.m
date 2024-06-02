@@ -18,4 +18,4 @@ function extent = imageUnclippedExtentPixels(im)
         imzm.internal.axesPlotAreaExtentPixels(ax);
 end
 
-% Steve Eddins
+% Copyright (c) 2024 Steven L. Eddins

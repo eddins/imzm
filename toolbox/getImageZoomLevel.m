@@ -22,4 +22,4 @@ function out = getImageZoomLevel(im)
     out = out * 100;
 end
 
-% Steve Eddins
+% Copyright (c) 2024 Steven L. Eddins

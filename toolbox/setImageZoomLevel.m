@@ -115,4 +115,4 @@ function tf = almostEqual(a,b)
     tf = abs(a - b) <= tol*max(abs(a),abs(b));
 end
 
-% Steve Eddins
+% Copyright (c) 2024 Steven L. Eddins
