@@ -14,7 +14,8 @@ classdef getImageZoomLevel_test < matlab.unittest.TestCase
 
     methods (Test)
         function basicTest(test_case)
-            ax = axes(Units = "pixels", Position = [100 100 50 50]);
+            ax = axes(Units = "pixels", Position = [100 100 50 50],...
+                Parent = test_case.TestFigure);
             im = imagesc(ones(10,25),Parent = ax);
             drawnow;
             actual = getImageZoomLevel(im);
