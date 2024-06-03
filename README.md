@@ -10,7 +10,7 @@ This MATLAB project includes functions for setting and querying an image zoom le
 - `setAxesCenterXY`
 - `getImagePixelExtentInches`
 
-![](./images/rose-zoom-collage.png)
+![](./images/roses-zoom-collage.png)
 
 ## Installation
 
