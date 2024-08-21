@@ -14,17 +14,18 @@
 %   setImageZoomLevel(level,im) sets the zoom level of the specified
 %   graphics image object.
 %
-%   NOTE: The function setImageZoomLevel works by setting the axes XLim and
+%   SIDE EFFECTS
+%
+%   The function setImageZoomLevel works by setting the axes XLim and
 %   YLim properties, which has the side effect of setting the axes XLimMode
-%   and YLimMode properties to "manual". The function does not change the
-%   axes or figure position, and it does not change the axes
-%   DataAspectRatio or DataAspectRatioMode.
+%   and YLimMode properties to "manual". 
 %
-%   NOTE: if the axes DataAspectRatioMode is 'manual', then setting the
-%   zoom level so that the ratio between the horizontal and vertical zoom
-%   levels changes is not possible, and an error message will result.
+%   Unless the zoom level is "fit", setImageZoomLevel sets the axes
+%   DataAspectRatio to be consistent with the specified zoom level, and
+%   this has the side effect of setting the DataAspectRatioMode to
+%   "manual". 
 %
-%   See also getImageZoomLevel
+%   See also getImageZoomLevel, zoomImage
 
 function setImageZoomLevel(new_level,im)
     arguments
@@ -48,24 +49,50 @@ function setImageZoomLevel(new_level,im)
         return
     end
 
-    current_level = getImageZoomLevel(im);
-
-    if ax.DataAspectRatioMode == "manual"
-        current_level_ratio = current_level(1) / current_level(2);
-        new_level_ratio = new_level(1) / new_level(2);
-        if ~almostEqual(current_level_ratio,new_level_ratio)
-            error("imzm:InvalidRatioChange",...
-                "Cannot change the x/y ratio of the zoom level when " + ...
-                "the axes DataAspectRatioMode is ""manual"".")
-        end
-    end
+    % The order of the operations below has been chosen to allow a
+    % zoomed-in image to fill the entire plot box. To allow that to happen,
+    % instead of constraining the image display to continue to fit within
+    % the current tight position, we first set the data aspect ratio to
+    % auto. Next, we compute the axes XLim and YLim properties to achieve
+    % the specified zoom level while maintaining the current center
+    % location. Finally, we set the data aspect ratio to be consistent
+    % with the zoom level.
     
-    s = current_level ./ new_level;
+    ax.DataAspectRatioMode = "auto";
 
+    current_level = getImageZoomLevel(im);
+    s = current_level ./ new_level;
     c = getAxesCenterXY(ax);
 
     ax.XLim = s(1) * (ax.XLim - c(1)) + c(1);
     ax.YLim = s(2) * (ax.YLim - c(2)) + c(2);
+
+    updateDataAspectRatio(new_level,im,ax);
+end
+
+function updateDataAspectRatio(new_level,im,ax)
+    % Set the data aspect ratio to be consistent with the specified zoom
+    % level.
+
+    zx = new_level(1);
+    zy = new_level(2);
+    physical_aspect_ratio = zy / zx;
+
+    im_extent_xy = imzm.internal.imageUnclippedExtentXY(im);
+    pixel_width_x = im_extent_xy(1) / size(im.CData,2);
+    pixel_width_y = im_extent_xy(2) / size(im.CData,1);
+    data_units_ratio = pixel_width_y / pixel_width_x;
+
+    data_aspect_xy_ratio = physical_aspect_ratio / data_units_ratio;
+
+    dar = ax.DataAspectRatio;
+    new_dar = dar;
+    new_dar(1) = new_dar(2) * data_aspect_xy_ratio;
+    ax.DataAspectRatio = new_dar;
+
+    if ~isequal(dar,new_dar)
+        drawnow
+    end
 end
 
 function out = checkNumericLevel(in)
@@ -108,11 +135,6 @@ function ext = extent(N,data)
     else
         ext = (data(end) - data(1)) / (N - 1);
     end
-end
-
-function tf = almostEqual(a,b)
-    tol = eps(class(a))^0.75;
-    tf = abs(a - b) <= tol*max(abs(a),abs(b));
 end
 
 % Copyright (c) 2024 Steven L. Eddins
