@@ -4,6 +4,7 @@
 
 This MATLAB project includes functions for setting and querying an image zoom level and pan location, as well a function for determining the physical extent of image pixels as currently displayed. The functions include:
 
+- `zoomImage`
 - `getImageZoomLevel`
 - `setImageZoomLevel`
 - `getAxesCenterXY`
