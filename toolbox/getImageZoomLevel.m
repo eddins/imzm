@@ -9,7 +9,7 @@
 %   level = getImageZoomLevel(im) returns the zoom level of the specified
 %   graphics image object.
 %
-%   See also setImageZoomLevel
+%   See also setImageZoomLevel, zoomImage
 
 function out = getImageZoomLevel(im)
     arguments
