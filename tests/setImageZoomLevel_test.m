@@ -74,6 +74,15 @@ classdef setImageZoomLevel_test < matlab.unittest.TestCase
             test_case.verifyEqual(actual,expected);
         end
 
+        function dataAspectRatio_test(test_case)
+            ax = axes(Parent = test_case.TestFigure);
+            im = imagesc(ones(10,1),Parent = ax);
+            setImageZoomLevel([100 200],im);
+            dar = ax.DataAspectRatio;
+            dar_xy = dar(1) / dar(2);
+            test_case.verifyEqual(dar_xy,2);
+        end        
+
         function dataAspectRatioModeManual(test_case)
             ax = axes(Units = "pixels", Position = [100 100 50 50],...
                 Parent = test_case.TestFigure);
@@ -85,18 +94,7 @@ classdef setImageZoomLevel_test < matlab.unittest.TestCase
             actual = getImageZoomLevel(im);
             expected = [100 100];
             test_case.verifyEqual(actual,expected);             
-        end
-
-        function dataAspectRatioModeManualErrorCase(test_case)
-            ax = axes(Units = "pixels", Position = [100 100 50 50],...
-                Parent = test_case.TestFigure);
-            im = imagesc(ones(10,25),Parent = ax);
-            ax.DataAspectRatioMode = "manual";
-            drawnow
-
-            test_case.verifyError(@() setImageZoomLevel([100 125],im),...
-                "imzm:InvalidRatioChange");            
-        end        
+        end    
     end
 end
 
