@@ -19,10 +19,11 @@ function setAxesCenterXY(center,ax)
 
     xlim = ax.XLim;
     new_xlim = xlim + shiftxy(1);
-    ax.XLim = new_xlim;
 
     ylim = ax.YLim;
-    new_ylim = ylim + shiftxy(1);
+    new_ylim = ylim + shiftxy(2);
+
+    ax.XLim = new_xlim;
     ax.YLim = new_ylim;
 end
 
