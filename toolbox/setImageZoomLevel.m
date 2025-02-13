@@ -49,6 +49,8 @@ function setImageZoomLevel(new_level,im)
         return
     end
 
+    current_level = getImageZoomLevel(im);
+
     % The order of the operations below has been chosen to allow a
     % zoomed-in image to fill the entire plot box. To allow that to happen,
     % instead of constraining the image display to continue to fit within
@@ -60,7 +62,6 @@ function setImageZoomLevel(new_level,im)
     
     ax.DataAspectRatioMode = "auto";
 
-    current_level = getImageZoomLevel(im);
     s = current_level ./ new_level;
     c = getAxesCenterXY(ax);
 
@@ -90,9 +91,6 @@ function updateDataAspectRatio(new_level,im,ax)
     new_dar(1) = new_dar(2) * data_aspect_xy_ratio;
     ax.DataAspectRatio = new_dar;
 
-    if ~isequal(dar,new_dar)
-        drawnow
-    end
 end
 
 function out = checkNumericLevel(in)
