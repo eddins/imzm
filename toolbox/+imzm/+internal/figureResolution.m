@@ -11,13 +11,15 @@ function res = figureResolution(fig)
         fig (1,1) matlab.ui.Figure
     end
 
-    original_units = fig.Units;
-    units_restorer = onCleanup(@() setUnits(fig,original_units));
+    true_fig = imzm.internal.getTrueFigure(fig);
 
-    fig.Units = "pixels";
-    pixel_position = fig.Position;
-    fig.Units = "inches";
-    inches_position = fig.Position;
+    original_units = true_fig.Units;
+    units_restorer = onCleanup(@() setUnits(true_fig,original_units));
+
+    true_fig.Units = "pixels";
+    pixel_position = true_fig.Position;
+    true_fig.Units = "inches";
+    inches_position = true_fig.Position;
 
     res = pixel_position(3) / inches_position(3);
 end
