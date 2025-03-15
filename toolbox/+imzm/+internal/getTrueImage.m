@@ -1,4 +1,8 @@
 function im = getTrueImage(im)
+    fig = ancestor(im,"figure");
+    if string(fig.Tag) == "EmbeddedFigure_Internal"
+        return
+    end    
     ax = ancestor(im,"axes");
     embedded_ax = imzm.internal.getTrueAxes(ax);
     if ax ~= embedded_ax

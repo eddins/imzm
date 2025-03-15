@@ -1,5 +1,8 @@
 function ax = getTrueAxes(ax)
     fig = ancestor(ax,"figure");
+    if string(fig.Tag) == "EmbeddedFigure_Internal"
+        return
+    end
     embedded_fig = imzm.internal.getTrueFigure(fig);
     if fig ~= embedded_fig
         all_axes = findobj(fig,"type","axes");

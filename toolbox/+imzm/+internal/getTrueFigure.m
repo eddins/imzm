@@ -23,21 +23,26 @@ function embedded_fig = findEmbeddedFigure(fig)
         listeners = data.listener;
         for k = 1:length(listeners)
             fh_details = functions(listeners(k).Callback);
-            w = fh_details.workspace{1};
-            if isfield(w,"editorId")
-                id = w.editorId;
-                matching_embedded_figs = findall(groot,"type","figure",...
-                    "Tag",'EmbeddedFigure_Internal',...
-                    "editorID",id);
-                if ~isempty(matching_embedded_figs)
-                    embedded_fig = matching_embedded_figs(1);
-                    break
+            if isfield(fh_details,"workspace")
+                w = fh_details.workspace{1};
+                if isfield(w,"editorId")
+                    id = w.editorId;
+                    matching_embedded_figs = findall(groot,"type","figure",...
+                        "Tag",'EmbeddedFigure_Internal',...
+                        "editorID",id);
+                    if ~isempty(matching_embedded_figs)
+                        embedded_fig = matching_embedded_figs(1);
+                        break
+                    else
+                        fprintf("No matching embedded figure found; calling drawnow and searching again\n");
+                    end
                 end
             end
         end
-    catch
-        error("imzm:EmbeddedFigureFailure", ...
-            "Unexpected failure in finding embedded " + ...
-            "live script figure.")
+    catch e
+        % error("imzm:EmbeddedFigureFailure", ...
+        %     "Unexpected failure in finding embedded " + ...
+        %     "live script figure.")
+        rethrow(e)
     end
 end
