@@ -9,19 +9,49 @@
 %   interface.
 
 function extent = axesPlotAreaExtentPixels(ax)
-    arguments
-        ax (1,1) matlab.graphics.axis.Axes
+    extent = getObjectPixelSize(ax);
+end
+
+function wh = getObjectPixelSize(obj)
+    root = groot;
+
+    if (obj == root)
+        wh = obj.ScreenSize(3:4);
+        return
     end
 
-    original_units = ax.Units;
-    unit_restorer = onCleanup(@() setAxesUnits(ax,original_units));
-    ax.Units = "pixels";
-    pixel_position = tightPosition(ax);
-    extent = pixel_position(3:4);
+    if (isa(obj, "matlab.graphics.axis.Axes") || ...
+            isa(obj, "matlab.ui.control.UIAxes"))
+        pos = tightPosition(obj);
+    else
+        pos = obj.Position;
+    end
+
+    switch obj.Units
+        case "normalized"
+            wh = pos(3:4) .* ...
+                getObjectPixelSize(obj.Parent);
+
+        case "inches"
+            wh = pos(3:4) * root.ScreenPixelsPerInch;
+
+        case "centimeters"
+            wh = pos(3:4) * root.ScreenPixelsPerInch / 2.54;
+
+        case "characters"
+            error("imzm:CharacterUnitsNotSupported",...
+                "Character units not supported.")
+
+        case "points"
+            wh = pos(3:4) * root.ScreenPixelsPerInch / 72;
+
+        case "pixels"
+            wh = pos(3:4);
+
+        otherwise
+            error("imzm:UnknownUnits", ...
+                "Unknown object units: ""%s""", obj.Units)
+    end
 end
 
-function setAxesUnits(ax,units)
-    ax.Units = units;
-end
-
-% Copyright (c) 2024 Steven L. Eddins
+% Copyright (c) 2024-2025 Steven L. Eddins
