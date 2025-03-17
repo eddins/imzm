@@ -16,9 +16,9 @@ function out = getImagePixelExtentInches(im)
         im (1,1) matlab.graphics.primitive.Image = imzm.internal.currentImage
     end
 
-    fig = ancestor(im,"figure");
+    root = groot;
     out = (getImageZoomLevel(im)/100) ./ ...
-        imzm.internal.figureResolution(fig);
+        root.ScreenPixelsPerInch;
 end
 
-% Copyright (c) 2024 Steven L. Eddins
+% Copyright (c) 2024-2025 Steven L. Eddins
