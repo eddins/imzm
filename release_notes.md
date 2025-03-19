@@ -1,5 +1,9 @@
 # Image Zoom Level and Pan Utilities: Release Notes
 
+## Version 2.0.3
+
+There are no code or functional changes in this release. It is only for resolving an issue with the File Exchange connection.
+
 ## Version 2.0.2
 
 **Bug fix.** Previously, the code for determining the axes extent in pixels had undesirable side effects. This issue is now resolved.
