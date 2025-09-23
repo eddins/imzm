@@ -20,6 +20,23 @@ function wh = getObjectPixelSize(obj)
         return
     end
 
+    if imzm.internal.liveEditorRunning
+        if isa(obj, "matlab.ui.Figure")
+            fig_embedded = imzm.internal.findEmbeddedFigure(obj);
+            if ~isempty(fig_embedded)
+                % The Live Editor has already created a shadow figure to
+                % contain the embedded graphics. Use the shadow figure for
+                % subsequent calculations.
+                obj = fig_embedded;
+            else
+                % Although we are running the Live Editor, the shadow
+                % figure has not yet been created. The only thing to do is
+                % to continue the calculations based on the original
+                % figure. There's nothing to do in this branch.
+            end
+        end
+    end
+
     if (isa(obj, "matlab.graphics.axis.Axes") || ...
             isa(obj, "matlab.ui.control.UIAxes"))
         pos = tightPosition(obj);
