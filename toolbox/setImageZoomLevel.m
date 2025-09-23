@@ -44,11 +44,42 @@ function setImageZoomLevel(new_level,im)
     isfit = isa(new_level,"imzm.internal.ZoomLevelOptions") && ...
         (new_level == "fit");
 
+    if imzm.internal.liveEditorRunning
+        fig = ancestor(ax, "figure");
+        fig_embedded = imzm.internal.findEmbeddedFigure(fig);
+        if ~isempty(fig_embedded)
+            ax_embedded = fig_embedded.Children;
+            if numel(ax_embedded) > 1
+                % Find the embedded axes that's in the same position as in
+                % the non-embedded figure.
+                ax_embedded = ax_embedded(ax == fig.Children);
+            end
+        else
+            % Make ax_embedded be empty, just like fig_embedded.
+            ax_embedded = [];
+        end
+
+        process_embedded_axes = ~isempty(ax_embedded);
+    else
+        process_embedded_axes = false;
+    end
+
     if isfit
         fitImage(ax,im);
+
+        if process_embedded_axes
+            fitImage(ax_embedded, im);
+        end
         return
     end
 
+    adjustAxesLimits(im,ax,new_level);
+    if process_embedded_axes
+        adjustAxesLimits(im, ax_embedded, new_level);
+    end
+end
+
+function adjustAxesLimits(im,ax,new_level)
     % The order of the operations below has been chosen to allow a
     % zoomed-in image to fill the entire plot box. To allow that to happen,
     % instead of constraining the image display to continue to fit within
@@ -57,7 +88,7 @@ function setImageZoomLevel(new_level,im)
     % the specified zoom level while maintaining the current center
     % location. Finally, we set the data aspect ratio to be consistent
     % with the zoom level.
-    
+
     ax.DataAspectRatioMode = "auto";
 
     current_level = getImageZoomLevel(im);
