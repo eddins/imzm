@@ -73,6 +73,7 @@ function setImageZoomLevel(new_level,im)
         return
     end
 
+
     adjustAxesLimits(im,ax,new_level);
     if process_embedded_axes
         adjustAxesLimits(im, ax_embedded, new_level);
@@ -89,6 +90,10 @@ function adjustAxesLimits(im,ax,new_level)
     % location. Finally, we set the data aspect ratio to be consistent
     % with the zoom level.
 
+    starting_limits = axis(ax);
+    is_axes_embedded = get(ancestor(ax,"figure"),"Tag") == ...
+        "EmbeddedFigure_Internal";
+
     ax.DataAspectRatioMode = "auto";
 
     current_level = getImageZoomLevel(im);
@@ -99,6 +104,18 @@ function adjustAxesLimits(im,ax,new_level)
     ax.YLim = s(2) * (ax.YLim - c(2)) + c(2);
 
     updateDataAspectRatio(new_level,im,ax);
+
+    ending_limits = axis(ax);
+
+    if is_axes_embedded
+        s = "Embedded axes: ";
+    else
+        s = "Axes: ";
+    end
+    fprintf("%s\n  starting limits [%g %g %g %g]\n  ending limits [%g %g %g %g]\n\n", ...
+        s, starting_limits(1), starting_limits(2), starting_limits(3), ...
+        starting_limits(4), ending_limits(1), ending_limits(2), ...
+        ending_limits(3), ending_limits(4));
 end
 
 function updateDataAspectRatio(new_level,im,ax)
