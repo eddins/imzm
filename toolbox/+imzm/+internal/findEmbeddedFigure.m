@@ -8,10 +8,12 @@ function out = findEmbeddedFigure(in)
         "Tag", "EmbeddedFigure_Internal", ...
         "editorID", editor_id);
 
-    % Speculative guess: if out is not a scalar, meaning that there appears
-    % to be more than one matching embedded figure, the active one is the
-    % first in the list.
-    out = out(1);
+    % Speculative guess: if out has more than element, meaning that there
+    % appears to be more than one matching embedded figure, the active one
+    % is the first in the list.
+    if numel(out) > 1
+        out = out(1);
+    end
 end
 
 % Copyright 2025 Steven L. Eddins
